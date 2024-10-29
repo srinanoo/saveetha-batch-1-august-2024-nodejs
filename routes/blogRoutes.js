@@ -1,19 +1,11 @@
 const router = require('express').Router();
 
-router.get("/getAllBlogPosts", (req, res) => {
-    res.send("Get all blog posts");
-});
-router.get("/getSpecificBlogPosts", (req, res) => {
-    res.send("Get specific blog posts");
-});
-router.post("/createBlogPost", (req, res) => {
-    res.send("Create new blog post");
-});
-router.put("/updateBlogPost", (req, res) => {
-    res.send("Update blog post");
-});
-router.delete("/deleteBlogPost/:id", (req, res) => {
-    res.send("Delete blog post");
-});
+const BlogControllers = require('../controllers/blogControllers');
+
+router.get("/getAllBlogPosts", BlogControllers.getAllBlogPosts);
+router.get("/getSpecificBlogPosts", BlogControllers.getSpecificBlogPosts);
+router.post("/createBlogPost", BlogControllers.createBlogPost);
+router.put("/updateBlogPost", BlogControllers.updateBlogPost);
+router.delete("/deleteBlogPost/:id", BlogControllers.deleteBlogPost);
 
 module.exports = router;
