@@ -1,6 +1,10 @@
 const express = require('express');
 const app = express();
-const port = 4000;
+require('dotenv').config();
+
+const port = process.env.PORT || 4000;
+
+const mongoose = require('mongoose');
 
 // to accept JSON requests from the payload
 app.use(express.json());
@@ -26,6 +30,13 @@ app.use(express.urlencoded({ extended: true }));
 // app.delete("/getBlog/:title/:description", (req, res) => {
 //     res.send(`PARAMS Data: ${req.params.title}, ${req.params.description}`);
 // });
+
+// DB Connection
+// mongoose.connect("mongodb://localhost:27017/BlogManagement").then(() => {
+//     console.log("MongoDB Connected...");
+// });
+mongoose.connect(process.env.MONGODB_URL)
+    .then(() => console.log("MongoDB Connected"));
 
 // Blog Routes
 const BlogRoutes = require('./routes/blogRoutes');
